@@ -15,12 +15,15 @@ import com.smkth.app3_recycleview.model.Student
 class StudentAdapter(
     private val context: Context,
     private val studentList: List<Student>
+
 ) : RecyclerView.Adapter<StudentAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvNama)
         val tvNis: TextView = itemView.findViewById(R.id.tvNis)
         val tvKelas: TextView = itemView.findViewById(R.id.tvKelas)
+        val tvJurusan: TextView = itemView.findViewById(R.id.tvJurusan)
+        val tvSekolah: TextView = itemView.findViewById(R.id.tvSekolah)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,7 +38,8 @@ class StudentAdapter(
         holder.tvName.text = student.nama
         holder.tvNis.text = "NIS: ${student.nis}"
         holder.tvKelas.text = "Kelas: ${student.kelas}"
-
+        holder.tvJurusan.text = "Jurusan: ${student.jurusan}"
+        holder.tvSekolah.text = "Sekolah: ${student.sekolah}"
 
         holder.itemView.setOnClickListener {
             Toast.makeText(context, "Memilih ${student.nama}", Toast.LENGTH_SHORT).show()
@@ -48,6 +52,8 @@ class StudentAdapter(
                     intent.putExtra("student_nama", student.nama)
                     intent.putExtra("student_nis", student.nis)
                     intent.putExtra("student_kelas", student.kelas)
+                    intent.putExtra("student_jurusan", student.jurusan)
+                    intent.putExtra("student_sekolah", student.sekolah)
                     context.startActivity(intent)
                 }
                 .setNegativeButton("Batal", null)

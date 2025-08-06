@@ -1,6 +1,7 @@
 package com.smkth.app3_recycleview
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,6 +11,8 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var tvNama: TextView
     private lateinit var tvNis: TextView
     private lateinit var tvKelas: TextView
+    private lateinit var tvJurusan: TextView
+    private lateinit var tvSekolah: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +25,24 @@ class DetailActivity : AppCompatActivity() {
         tvNama = findViewById(R.id.tvNama)
         tvNis = findViewById(R.id.tvNis)
         tvKelas = findViewById(R.id.tvKelas)
+        tvJurusan = findViewById(R.id.tvJurusan)
+        tvSekolah = findViewById(R.id.tvSekolah)
 
         val nama = intent.getStringExtra("student_nama")
         val nis = intent.getStringExtra("student_nis")
         val kelas = intent.getStringExtra("student_kelas")
+        val jurusan = intent.getStringExtra("student_jurusan")
+        val sekolah = intent.getStringExtra("student_sekolah")
+        val btnBack = findViewById<Button>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish() // kembali ke MainActivity
+        }
+
 
         tvNama.text = nama
         tvNis.text = nis
         tvKelas.text = kelas
+        tvJurusan.text = jurusan
+        tvSekolah.text = sekolah
     }
 }
