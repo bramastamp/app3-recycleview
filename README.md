@@ -104,30 +104,132 @@ tvNama.text = nama
 
 ### ✅ 1. Tambah Data Siswa
 - Menambahkan minimal 10 data siswa secara statis dari file `DummyData.kt`.
+```
+return listOf(
+            Student("Andi", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan Pati"),
+            Student("Okta", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan Pati"),
+            Student("Soli", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan Pati"),
+            Student("Andika", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan Pati"),
+            Student("Andromeda", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan Pati"),
+            Student("Bramasta", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan Pati"),
+            Student("Marga", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan Pati"),
+            Student("Pangukuh", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan Pati"),
+            Student("Galang", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan Pati"),
+            Student("Surya", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan Pati"),
+            Student("Admaja", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan"),
+            Student("Joko", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan"),
+            Student("Widodo", "123456", "XII TJKT 1", "TJKT", "SMK Tunas Harapan")
+        )
+```
 
 ### ✅ 2. Field Baru pada Setiap Siswa
 - Menambahkan field:
   - **Jurusan**
   - **Sekolah**
 - Field ini ditambahkan pada class `Student.kt`, ditampilkan di item list dan halaman detail.
+```
+data class Student(
+    val nama: String,
+    val nis: String,
+    val kelas: String,
+    val jurusan: String,
+    val sekolah: String
+)
+```
 
 ### ✅ 3. Tombol Aksi per Siswa
 - Menambahkan dua tombol baru di `item_student.xml`:
   - **Edit**
   - **Hapus**
+```
+<Button
+    android:id="@+id/btnEdit"
+    android:text="Edit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+<Button
+    android:id="@+id/btnHapus"
+    android:text="Hapus"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+```
 
 ### ✅ 4. Fitur Edit
 - Saat tombol "Edit" ditekan:
   - Muncul dialog `AlertDialog` menggunakan layout `dialog_edit_student.xml`.
   - Pengguna bisa mengubah `nama` dan `kelas`.
   - Validasi: input tidak boleh kosong.
+- 🧩 Cuplikan Kode Edit (StudentAdapter.kt)
+```
+val editView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_student, null)
+val inputNama = editView.findViewById<EditText>(R.id.editNama)
+val inputKelas = editView.findViewById<EditText>(R.id.editKelas)
+
+AlertDialog.Builder(context)
+    .setTitle("Edit Siswa")
+    .setView(editView)
+    .setPositiveButton("Simpan") { _, _ ->
+        val namaBaru = inputNama.text.toString().trim()
+        val kelasBaru = inputKelas.text.toString().trim()
+
+        if (namaBaru.isEmpty() || kelasBaru.isEmpty()) {
+            Toast.makeText(context, "Input tidak boleh kosong!", Toast.LENGTH_SHORT).show()
+            return@setPositiveButton
+        }
+
+        studentList[position] = student.copy(nama = namaBaru, kelas = kelasBaru)
+        notifyItemChanged(position)
+    }
+    .setNegativeButton("Batal", null)
+    .show()
+```
+- 🧩 Kode Layout: dialog_edit_student.xml
+```
+<LinearLayout ... >
+    <EditText
+        android:id="@+id/editNama"
+        android:hint="Nama"
+        ... />
+    <EditText
+        android:id="@+id/editKelas"
+        android:hint="Kelas"
+        ... />
+</LinearLayout>
+```
 
 ### ✅ 5. Fitur Hapus
 - Saat tombol "Hapus" ditekan:
   - Muncul konfirmasi.
   - Jika disetujui, siswa dihapus dari daftar (RecyclerView diperbarui secara langsung).
+- 🧩 Cuplikan Kode Hapus (StudentAdapter.kt)
+```
+AlertDialog.Builder(context)
+    .setTitle("Hapus Siswa")
+    .setMessage("Yakin ingin menghapus ${student.nama}?")
+    .setPositiveButton("Ya") { _, _ ->
+        studentList.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, studentList.size)
+    }
+    .setNegativeButton("Batal", null)
+    .show()
+```
 
----
+### ✅ 6. Halaman Detail Diperluas
+- Menampilkan semua informasi siswa, termasuk jurusan & sekolah.
+- 🧩 Intent ke DetailActivity
+```
+intent.putExtra("student_jurusan", student.jurusan)
+intent.putExtra("student_sekolah", student.sekolah)
+```
+- 🧩 Di DetailActivity.kt
+```
+val jurusan = intent.getStringExtra("student_jurusan")
+val sekolah = intent.getStringExtra("student_sekolah")
+tvJurusan.text = jurusan
+tvSekolah.text = sekolah
+```
 
 ## 📂 File-File Baru / Dimodifikasi
 
