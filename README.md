@@ -31,10 +31,32 @@ Ini adalah proyek sederhana untuk belajar RecyclerView menggunakan Git & Android
 - Android Studio
 - Git + GitHub
 
+## 🧠 Cara Kerja RecyclerView
+RecyclerView adalah komponen Android yang digunakan untuk menampilkan daftar data dalam bentuk list atau grid secara efisien. Ia menggantikan ListView dengan pendekatan yang lebih modular dan hemat memori.
+## ⚙️ Komponen Utama dalam RecyclerView:
+- Adapter: Menyediakan data dan mengatur bagaimana tiap item ditampilkan.
+- ViewHolder: Menyimpan referensi view agar tidak perlu mencari ulang (findViewById).
+- LayoutManager: Menentukan tata letak list (linear, grid, staggered, dll).
+
+## 🔁 Alur Kerja RecyclerView di Aplikasi Ini
+  1. Data Siswa disiapkan oleh DummyData.getStudentList() → menghasilkan List<Student>.
+  2. Adapter (StudentAdapter):
+    - Menerima daftar data.
+    - Menciptakan tampilan untuk setiap item (onCreateViewHolder).
+    - Mengisi data ke tampilan (onBindViewHolder).
+  3. ViewHolder:
+    - Digunakan untuk menyimpan referensi komponen dalam item_student.xml seperti:
+      - TextView untuk nama, NIS, kelas
+      - ImageView untuk ikon siswa
+  4. Klik Item:
+     - Saat item diklik:
+      - Tampilkan Toast dan AlertDialog
+      - Jika disetujui, navigasi ke DetailActivity lewat Intent sambil membawa data siswa
+  5. LayoutManager:
+     - Digunakan LinearLayoutManager → menampilkan list secara vertikal.
+
 ## 📁 Struktur file dan alur data
 <img width="251" height="451" alt="image" src="https://github.com/user-attachments/assets/1341b87a-0a74-4b67-a399-6f0ff0be994a" />
-
-
 ### 1. **MainActivity**
 - Memanggil data dari `DummyData.getStudentList()`.
 - Menginisialisasi `RecyclerView`.
@@ -75,9 +97,6 @@ intent.putExtra("student_kelas", student.kelas)
 val nama = intent.getStringExtra("student_nama")
 tvNama.text = nama
 ```
-
- 
-
 
 ## 📸 Screenshot
 
