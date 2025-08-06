@@ -9,19 +9,19 @@ Ini adalah proyek sederhana untuk belajar RecyclerView menggunakan Git & Android
   
 ## 📱 Fitur yang sudah ada
 1. Halaman utama (MainActivity)
-  a. File-file terkait:
+  - File-file terkait:
     - MainActivity.kt
     - item_student.xml
     - StudentAdapter.kt
     - DummyData.kt
-  b. Fungsi:
+  - Fungsi:
     - Menampilkan daftar siswa dalam bentuk card view menggunakan RecyclerView.
     - Setiap item menampilkan:
       - Nama siswa
       - NIS
       - Kelas
       - Gambar siswa (placeholder: @drawable/fotosiswa)
-  c. Cara kerja:
+  - Cara kerja:
     - Data siswa diambil dari DummyData.getStudentList() (berisi 3 siswa).
     - Data ini diproses dan ditampilkan melalui StudentAdapter.
 
