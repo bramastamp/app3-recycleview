@@ -7,97 +7,95 @@ Ini adalah proyek sederhana untuk belajar RecyclerView menggunakan Git & Android
 - Galang Surya Admaja
 - Andika Andromeda
   
-## 📱 Fitur yang sudah ada
-1. Halaman utama (MainActivity)
-  - File-file terkait:
-    - MainActivity.kt
-    - item_student.xml
-    - StudentAdapter.kt
-    - DummyData.kt
-  - Fungsi:
-    - Menampilkan daftar siswa dalam bentuk card view menggunakan RecyclerView.
-    - Setiap item menampilkan:
-      - Nama siswa
-      - NIS
-      - Kelas
-      - Gambar siswa (placeholder: @drawable/fotosiswa)
-  - Cara kerja:
-    - Data siswa diambil dari DummyData.getStudentList() (berisi 3 siswa).
-    - Data ini diproses dan ditampilkan melalui StudentAdapter.
+## 📱 Fitur-fitur yang sudah ada
+### Halaman Utama
+- Menampilkan daftar siswa:
+  - Nama
+  - NIS
+  - Kelas
+
+### Popup Konfirmasi
+- Setelah item diklik, muncul `AlertDialog`:
+  - **Lihat** → Menuju halaman detail
+  - **Batal** → Menutup dialog
+
+### Halaman Detail
+- Menampilkan:
+  - Foto siswa
+  - Nama lengkap
+  - NIS
+  - Kelas
 
 ## 🔧 Teknologi
 - Kotlin
 - Android Studio
 - Git + GitHub
 
-## 📸 Penjelasan code penting
-- import android.os.Bundle
-  Fungsi: Mengimpor Bundle, yaitu objek yang digunakan untuk menyimpan data yang ingin dikirim antar activity atau saat memulihkan state Activity.
-  
-- import android.widget.Button
-- import android.widget.EditText
-- import android.widget.TextView
-  Fungsi: Mengimpor kelas UI:
-  - Button untuk tombol.
-  - EditText untuk input teks.
-  - TextView untuk menampilkan teks.
-  Ini semua adalah komponen antarmuka pengguna (UI) dalam Android.
+## 📁 Struktur file dan alur data
+app3-recycleview/
+├── java/com/smkth/app3_recycleview/
+│ ├── adapter/
+│ │ └── StudentAdapter.kt # Adapter untuk RecyclerView
+│ ├── model/
+│ │ └── Student.kt # Data class untuk objek Student
+│ ├── utils/
+│ │ └── DummyData.kt # Data dummy siswa
+│ ├── MainActivity.kt # Halaman utama berisi daftar siswa
+│ └── DetailActivity.kt # Halaman detail siswa
+│
+├── res/layout/
+│ ├── activity_main.xml # Layout utama (memuat RecyclerView)
+│ ├── activity_detail.xml # Layout halaman detail siswa
+│ └── item_student.xml # Layout item untuk tiap siswa di daftar
+│
+└── res/drawable/
+└── fotosiswa.png # Gambar/icon siswa (dummy)
 
-- import androidx.activity.enableEdgeToEdge
-  - Fungsi: Mengaktifkan tampilan full screen atau edge-to-edge layout, agar konten bisa muncul di belakang sistem bar (status bar dan         navigation bar).
-  - Biasanya dipakai agar aplikasi terlihat modern dan bersih.
-  
-- import androidx.appcompat.app.AppCompatActivity
-  - Fungsi: Ini adalah kelas dasar untuk membuat Activity dengan dukungan dari AndroidX (modern Android libraries).
-  - AppCompatActivity memungkinkan penggunaan fitur-fitur modern sambil tetap kompatibel dengan versi Android lama.
-  
-- import androidx.core.view.ViewCompat
-- import androidx.core.view.WindowInsetsCompat
-  - Fungsi: ViewCompat: Kelas pembantu agar kode bisa berjalan kompatibel di berbagai versi Android.
-          WindowInsetsCompat: Digunakan untuk mengatur padding/layout agar tidak tertutup oleh status bar atau navigation bar. Berguna untuk UI responsif.
+### 1. **MainActivity**
+- Memanggil data dari `DummyData.getStudentList()`.
+- Menginisialisasi `RecyclerView`.
+- Mengatur `StudentAdapter` sebagai adapter.
 
-- private lateinit var inputName: EditText
-- private lateinit var inputKelas: EditText
-- private lateinit var btnSubmit: Button
-- private lateinit var txtResult: TextView
-  - Fungsi: - private
-            Artinya properti ini hanya bisa diakses dari dalam class MainActivity.
-            Ini adalah encapsulation: menyembunyikan detail internal agar tidak bisa diakses sembarangan dari luar.
-          - lateinit
-            Artinya: variabel ini akan di-inisialisasi nanti, bukan saat dibuat.
-          - var
-            Artinya: Menandakan ini adalah mutable variable — bisa diubah nilainya.
-  - kesimpulan: private lateinit var namaVariabel: Tipe
-              berarti:
-              Inisialisasi variabel ini nanti (bukan saat deklarasi), dan variabel ini hanya bisa diakses dari dalam class
+```kotlin
+recyclerView.adapter = StudentAdapter(this, DummyData.getStudentList())
+```
 
-- override fun onCreate
-  - Fungsi: - fun onCreate(...)
-            Fungsi yang dipanggil satu kali saat activity diluncurkan (pertama kali dibuka).
-          - override
-            Menandakan bahwa fungsi ini mengganti (meng-override) versi aslinya dari AppCompatActivity.
-            AppCompatActivity sudah punya onCreate() bawaan.
-            Kita meng-override agar bisa menambahkan logika sendiri saat Activity dimulai.
-  
-- setContentView(R.layout.activity_main)
-  - Fungsi: perintah untuk menampilkan layout XML ke layar saat aplikasi dibuka.
-  
-- inputName = findViewById(R.id.etNama)
-- inputKelas = findViewById(R.id.etKelas)
-- btnSubmit = findViewById(R.id.btnTampilkan)
-- txtResult = findViewById(R.id.tvHasil)
-  - Fungsi: untuk menghubungkan (menginisialisasi) variabel di Kotlin dengan komponen UI yang kamu buat di file XML (activity_main.xml).
+### 2. **DummyData.kt**
+- Menyediakan data siswa berupa list objek Student.
+```
+listOf(
+    Student("Andi", "123456", "XII TJKT 1"),
+    Student("Okta", "123456", "XII TJKT 1"),
+    Student("Soli", "123456", "XII TJKT 1")
+)
+```
 
-- btnSubmit.setOnClickListener {
-    val nama = inputName.text.toString().trim()
-    var kelas = inputKelas.text.toString().trim()
-    var hasil = "Nama: $nama\nKelas: $kelas"
-    txtResult.text = hasil
-  }
-  - Fungsi: Menangani aksi saat tombol btnSubmit ditekan, lalu menampilkan hasil input ke layar.
+### 3. **StudentAdapter.kt**
+- Menyediakan data siswa berupa list objek Student.
+- Mengatur tampilan tiap siswa dalam item_student.xml.
+- Menampilkan nama, NIS, dan kelas.
+- Saat item diklik:
+  - Menampilkan Toast
+  - Menampilkan AlertDialog → jika "Lihat" ditekan, buka DetailActivity dan kirim data lewat Intent.
+```
+intent.putExtra("student_nama", student.nama)
+intent.putExtra("student_nis", student.nis)
+intent.putExtra("student_kelas", student.kelas)
+```
+
+### 4. **DetailActivity.kt**
+- Menyediakan data siswa berupa list objek Student.
+- Menerima data Intent dari adapter.
+- Menampilkan nama, NIS, dan kelas pada layout activity_detail.xml.
+```
+val nama = intent.getStringExtra("student_nama")
+tvNama.text = nama
+```
+
+ 
+
 
 ## 📸 Screenshot
-![Screenshot_20250730_131235_app2-colab](https://github.com/user-attachments/assets/9814ebfb-bcce-4f3c-8d84-4ba0703e99cd)
-![Screenshot_20250730_131255_app2-colab](https://github.com/user-attachments/assets/f6471f99-fecf-47f5-a6d2-2248f650eb0d)
+
 
   
