@@ -244,6 +244,9 @@ tvSekolah.text = sekolah
 | `README.md` | Menjelaskan fitur-fitur tambahan (file ini). |
 
 ## 📸 Screenshot
+![Screenshot_20250806_201031_app3-recycleview](https://github.com/user-attachments/assets/e4b33fd2-51a4-4849-be94-107c550dad19)
+![Screenshot_20250806_201017_app3-recycleview](https://github.com/user-attachments/assets/4d2a2a9f-de79-4ee7-a2c5-161a3b2d234d)
+![Screenshot_20250806_201010_app3-recycleview](https://github.com/user-attachments/assets/a6732eef-43a7-49a3-8de5-6d6019fffe16)
 
 
   
