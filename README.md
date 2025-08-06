@@ -57,6 +57,8 @@ RecyclerView adalah komponen Android yang digunakan untuk menampilkan daftar dat
 
 ## 📁 Struktur file dan alur data
 <img width="251" height="451" alt="image" src="https://github.com/user-attachments/assets/1341b87a-0a74-4b67-a399-6f0ff0be994a" />
+
+
 ### 1. **MainActivity**
 - Memanggil data dari `DummyData.getStudentList()`.
 - Menginisialisasi `RecyclerView`.
