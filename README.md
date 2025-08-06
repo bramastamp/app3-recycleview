@@ -100,6 +100,50 @@ val nama = intent.getStringExtra("student_nama")
 tvNama.text = nama
 ```
 
+## ✨ Fitur Baru yang Ditambahkan
+
+### ✅ 1. Menambahkan 10 Data Siswa
+- Data dummy ditambahkan di file: `DummyData.kt`
+- Setiap siswa memiliki informasi:
+  - Nama
+  - NIS
+  - Kelas
+  - **Jurusan**
+  - **Sekolah**
+
+### 🔍 2. Fitur Search / Filter
+- Menambahkan `SearchView` di `MainActivity`
+- Pengguna dapat mencari siswa berdasarkan **nama**
+- Data akan difilter secara **langsung (real-time)** di `RecyclerView`
+
+### 🌙 3. Dukungan Dark Mode
+- Menambahkan file `colors.xml` untuk mode terang dan `values-night/colors.xml` untuk mode gelap
+- UI akan otomatis menyesuaikan sesuai dengan **preferensi sistem pengguna**
+
+### 🧾 4. Menampilkan Detail Siswa Lengkap
+- Saat item siswa diklik, akan muncul dialog konfirmasi
+- Jika pengguna memilih "Lihat", maka akan diarahkan ke `DetailActivity`
+- Menampilkan:
+  - Nama
+  - NIS
+  - Kelas
+  - Jurusan
+  - Sekolah
+
+## 🛠️ File yang Dimodifikasi / Ditambahkan
+
+| File | Deskripsi |
+|------|-----------|
+| `Student.kt` | Menambahkan field `jurusan` dan `sekolah` |
+| `DummyData.kt` | Menambahkan 10 data siswa lengkap |
+| `StudentAdapter.kt` | Menambahkan filter, binding jurusan & sekolah |
+| `item_student.xml` | Menambahkan `TextView` jurusan dan sekolah |
+| `activity_main.xml` | Menambahkan `SearchView` |
+| `MainActivity.kt` | Menambahkan logika pencarian |
+| `activity_detail.xml` | Menampilkan info lengkap siswa |
+| `DetailActivity.kt` | Mendukung tampilan tambahan |
+| `colors.xml` & `colors-night.xml` | Dukungan dark mode |
+
 ## 📸 Screenshot
 
 
