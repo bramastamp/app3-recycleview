@@ -100,49 +100,46 @@ val nama = intent.getStringExtra("student_nama")
 tvNama.text = nama
 ```
 
-## ✨ Fitur Baru yang Ditambahkan
+## 🆕 Fitur Baru yang Ditambahkan
 
-### ✅ 1. Menambahkan 10 Data Siswa
-- Data dummy ditambahkan di file: `DummyData.kt`
-- Setiap siswa memiliki informasi:
-  - Nama
-  - NIS
-  - Kelas
+### ✅ 1. Tambah Data Siswa
+- Menambahkan minimal 10 data siswa secara statis dari file `DummyData.kt`.
+
+### ✅ 2. Field Baru pada Setiap Siswa
+- Menambahkan field:
   - **Jurusan**
   - **Sekolah**
+- Field ini ditambahkan pada class `Student.kt`, ditampilkan di item list dan halaman detail.
 
-### 🔍 2. Fitur Search / Filter
-- Menambahkan `SearchView` di `MainActivity`
-- Pengguna dapat mencari siswa berdasarkan **nama**
-- Data akan difilter secara **langsung (real-time)** di `RecyclerView`
+### ✅ 3. Tombol Aksi per Siswa
+- Menambahkan dua tombol baru di `item_student.xml`:
+  - **Edit**
+  - **Hapus**
 
-### 🌙 3. Dukungan Dark Mode
-- Menambahkan file `colors.xml` untuk mode terang dan `values-night/colors.xml` untuk mode gelap
-- UI akan otomatis menyesuaikan sesuai dengan **preferensi sistem pengguna**
+### ✅ 4. Fitur Edit
+- Saat tombol "Edit" ditekan:
+  - Muncul dialog `AlertDialog` menggunakan layout `dialog_edit_student.xml`.
+  - Pengguna bisa mengubah `nama` dan `kelas`.
+  - Validasi: input tidak boleh kosong.
 
-### 🧾 4. Menampilkan Detail Siswa Lengkap
-- Saat item siswa diklik, akan muncul dialog konfirmasi
-- Jika pengguna memilih "Lihat", maka akan diarahkan ke `DetailActivity`
-- Menampilkan:
-  - Nama
-  - NIS
-  - Kelas
-  - Jurusan
-  - Sekolah
+### ✅ 5. Fitur Hapus
+- Saat tombol "Hapus" ditekan:
+  - Muncul konfirmasi.
+  - Jika disetujui, siswa dihapus dari daftar (RecyclerView diperbarui secara langsung).
 
-## 🛠️ File yang Dimodifikasi / Ditambahkan
+---
 
-| File | Deskripsi |
-|------|-----------|
-| `Student.kt` | Menambahkan field `jurusan` dan `sekolah` |
-| `DummyData.kt` | Menambahkan 10 data siswa lengkap |
-| `StudentAdapter.kt` | Menambahkan filter, binding jurusan & sekolah |
-| `item_student.xml` | Menambahkan `TextView` jurusan dan sekolah |
-| `activity_main.xml` | Menambahkan `SearchView` |
-| `MainActivity.kt` | Menambahkan logika pencarian |
-| `activity_detail.xml` | Menampilkan info lengkap siswa |
-| `DetailActivity.kt` | Mendukung tampilan tambahan |
-| `colors.xml` & `colors-night.xml` | Dukungan dark mode |
+## 📂 File-File Baru / Dimodifikasi
+
+| File | Penjelasan |
+|------|------------|
+| `Student.kt` | Menambahkan field `jurusan` dan `sekolah`. |
+| `DummyData.kt` | Menambahkan minimal 10 data siswa. |
+| `StudentAdapter.kt` | Menambahkan tombol edit & hapus, logika edit dan hapus item. |
+| `item_student.xml` | Menambahkan tampilan tombol edit & hapus serta text jurusan & sekolah. |
+| `dialog_edit_student.xml` | Layout dialog untuk mengedit data siswa. |
+| `DetailActivity.kt` | Menampilkan semua informasi siswa termasuk field tambahan. |
+| `README.md` | Menjelaskan fitur-fitur tambahan (file ini). |
 
 ## 📸 Screenshot
 
