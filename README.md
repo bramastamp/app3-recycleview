@@ -32,24 +32,8 @@ Ini adalah proyek sederhana untuk belajar RecyclerView menggunakan Git & Android
 - Git + GitHub
 
 ## 📁 Struktur file dan alur data
-app3-recycleview/
-├── java/com/smkth/app3_recycleview/
-│ ├── adapter/
-│ │ └── StudentAdapter.kt # Adapter untuk RecyclerView
-│ ├── model/
-│ │ └── Student.kt # Data class untuk objek Student
-│ ├── utils/
-│ │ └── DummyData.kt # Data dummy siswa
-│ ├── MainActivity.kt # Halaman utama berisi daftar siswa
-│ └── DetailActivity.kt # Halaman detail siswa
-│
-├── res/layout/
-│ ├── activity_main.xml # Layout utama (memuat RecyclerView)
-│ ├── activity_detail.xml # Layout halaman detail siswa
-│ └── item_student.xml # Layout item untuk tiap siswa di daftar
-│
-└── res/drawable/
-└── fotosiswa.png # Gambar/icon siswa (dummy)
+<img width="251" height="451" alt="image" src="https://github.com/user-attachments/assets/1341b87a-0a74-4b67-a399-6f0ff0be994a" />
+
 
 ### 1. **MainActivity**
 - Memanggil data dari `DummyData.getStudentList()`.
