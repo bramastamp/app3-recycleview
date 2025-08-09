@@ -79,7 +79,6 @@ listOf(
 ```
 
 ### 3. **StudentAdapter.kt**
-- Menyediakan data siswa berupa list objek Student.
 - Mengatur tampilan tiap siswa dalam item_student.xml.
 - Menampilkan nama, NIS, dan kelas.
 - Saat item diklik:
